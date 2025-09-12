@@ -279,8 +279,10 @@ Pipeline: Stage View
 
 
 # Installing argocd
+
 You can follow same procedure in the official Argo CD document [Getting started with Argo CD](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 
+1. Create namespace
 ```
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
@@ -291,7 +293,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl get svc -n argocd
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
-3.Tunnelining use 
+3. Tunnelining use 
 ```sh 
 kubectl get svc argocd-server -n argocd
 ```
@@ -300,7 +302,7 @@ just to check :-->
 ```sh 
 kubectl get svc argocd-server -n argocd --watch
 ```
-4.
+4. Describe Argo CD Server
 ```sh 
 root@ip-172-31-86-153:~kubectl describe svc argocd-server -n argocd
 Name:                     argocd-server
@@ -329,23 +331,18 @@ External Traffic Policy:  Cluster
 Internal Traffic Policy:  Cluster
 Events:
 ```
-
-5. Enableing the ingress:
-```sh 
-microk8s enable ingress
-```
 ```sh 
 root@ip-172-31-86-153:~# kubectl get svc argocd-server -n argocd
 NAME            TYPE           CLUSTER-IP       EXTERNAL-IP                                                                     PORT(S)                AGE
 argocd-server   LoadBalancer   10.100.128.127 a654b9e7489e74285a6e36068318dbb5-2095593561.us-east-1.elb.amazonaws.com    80:31854/TCP,443:31871/TCP   22m
  
 ```
-6. To access the application 
+5. To access the application 
 ```sh 
  <public ip>:31854
 ```
 
-7. TO get the secrete key
+6. TO get the secrete key
 
 ```sh
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
