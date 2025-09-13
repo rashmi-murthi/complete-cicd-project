@@ -202,11 +202,11 @@ cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 
 u --> admin
 P --> admin
-
+```
 ## Installing Docker on admin server
 
 ```commandline
-sh docker.sh
+vim docker.sh
 ```
 ```commandline
 #!/bin/bash
@@ -257,6 +257,9 @@ dockerVersion=$(docker -v | awk '/version/ {print $3}' | tr -d ",")
 
 echo "The Docker status is $dockerStatus"
 echo "The Docker version is $dockerVersion"
+```
+```commandline
+sh docker.sh 
 ```
 ### after docker installtion 
 ```commandline
