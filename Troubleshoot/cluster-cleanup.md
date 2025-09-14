@@ -1,4 +1,7 @@
 # Manual Cleanup Procedure for Stuck EKS VPC
+Eventhough cluster setup deleted via CLI aws cosole showing failed
+
+![(Troubleshoot/cluster-deletion-failed.png](Troubleshoot/cluster-deletion-failed.png)
 
 ### Step 1: Identify Dependencies on the Subnets
 
@@ -14,8 +17,6 @@ Look for:
 
 - EC2 Instances → Terminate them.
 
-Load Balancers → Delete them if present.
-
 ### Step 2: Delete Dependent Resources
 ✅ LoadBalancer
 
@@ -23,10 +24,14 @@ Go to Load Balancers
 
 - Delete them if present.
 
+![(Troubleshoot/delete-lb.png](Troubleshoot/delete-lb.png)
+
 ### Step 3: Delete VPC 
 ✅ Go to VPC
 
 - Delete teh vpc which is attached to eksctl
+
+![(Troubleshoot/delete-vpc.png](Troubleshoot/delete-vpc.png)
 
 ### Step 4: Retry Stack Deletion
 
