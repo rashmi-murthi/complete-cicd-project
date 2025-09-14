@@ -10,7 +10,7 @@ This repository demonstrates a **complete CI/CD pipeline** for a Java applicatio
 ---
 
 # Architecture for application
-![architecture-diagram.png](architecture-diagram.png)
+![images/architecture-diagram.png](images/architecture-diagram.png)
 
 # Infrastructure Setup
 
