@@ -61,7 +61,7 @@ terraform apply
 terraform destroy
 ```
 
-## Installing the jenkins:
+## Installing the jenkins and Maven:
 ref: https://www.jenkins.io/doc/book/installing/linux/#debianubuntu
 ```yaml
 #!/bin/bash
@@ -348,7 +348,8 @@ argocd-server   LoadBalancer   10.100.128.127 a654b9e7489e74285a6e36068318dbb5-2
 ```
 5. To access the application 
 ```sh 
- <public ip>:31854
+ https://<EXTERNAL-IP> # if LoadBalncer
+ <public ip>:31854     # if nodePort
 ```
 
 6. TO get the secrete key
