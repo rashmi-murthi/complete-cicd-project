@@ -1,14 +1,25 @@
 # complete-cicd-project
 
-This is Simple ci-cd project
+This repository demonstrates a **complete CI/CD pipeline** for a Java application using:
+- **Jenkins** for CI/CD
+- **Docker** for containerization
+- **SonarQube** for static code analysis
+- **ArgoCD** for GitOps-based deployment
+- **Kubernetes** for container orchestration
+
+---
 
 # Architecture for application
 ![architecture-diagram.png](architecture-diagram.png)
-# Create a EC2 instance via terraform or we can do manually also  
 
-# Security groups inbound list
-![admin-security-group.png](admin-security-group.png)
+# Infrastructure Setup
 
+Create a EC2 instance via terraform or we can do manually also 
+
+### Security groups inbound list
+![images/admin-security-group.png](images/admin-security-group.png)
+
+## Create Admin EC2 Instance
 ```yaml
 provider "aws" {
     region = "us-east-1"
@@ -76,12 +87,12 @@ systemctl enable jenkins
 systemctl start jenkins
 systemctl status jenkins
 ```
-![jenkins-status.png](jenkins-status.png)
+![images/jenkins-status.png](images/jenkins-status.png)
 
 ```commandline
 mvn --version
 ```
-![mvn-status.png](mvn-status.png)
+![images/mvn-status.png](images/mvn-status.png)
 # Setup Kubernetes on Amazon EKS
 
 You can follow same procedure in the official  AWS document [Getting started with Amazon EKS – eksctl](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html)   
@@ -137,7 +148,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
 
 4.   ### Once IAM role created attach that IAM Role to ec2 instance###
     Actions--> secuity--> Modify IAM Role
-   ![iam-role-policies.png](iam-role-policies.png)
+   ![images/iam-role-policies.png](images/iam-role-policies.png)
 
 5. Create your cluster and nodes 
    ```sh
@@ -164,7 +175,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
    kubectl get nodes
    kubectl run tomcat --image=tomcat 
    ```
-   ![validation-nodes.png](validation-nodes.png)
+   ![images/validation-nodes.png](images/validation-nodes.png)
    
    #### Deploying Nginx pods on Kubernetes
 1. Deploying Nginx Container
@@ -179,7 +190,7 @@ You can follow same procedure in the official  AWS document [Getting started wit
    ```sh
    kubectl expose deployment demo-nginx --port=80 --type=LoadBalancer
    ```
-   ![validation-pods.png](validation-pods.png)
+   ![images/validation-pods.png](images/validation-pods.png)
 
 ## Sonarqube setup on admin-server
 
@@ -196,7 +207,7 @@ cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 ./sonar.sh start
 ```
 ### result looks like this
-![sonarqube-dashboard.png](sonarqube-dashboard.png)
+![images/sonarqube-dashboard.png](images/sonarqube-dashboard.png)
 
 ```
 
@@ -267,7 +278,7 @@ usermod -aG docker jenkins
 usermod -aG docker ubuntu
 systemctl restart docker
 ```
-![docker-status.png](docker-status.png)
+![images/docker-status.png](images/docker-status.png)
    
 ## Plugins to install
 ```commandline
@@ -278,7 +289,7 @@ Pipeline: Stage View
 
 ```
 ## credential setups
-![credentials-setup.png](credentials-setup.png)
+![images/credentials-setup.png](images/credentials-setup.png)
 
 
 # Installing argocd
@@ -299,11 +310,6 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 3. Tunnelining use 
 ```sh 
 kubectl get svc argocd-server -n argocd
-```
-
-just to check :-->
-```sh 
-kubectl get svc argocd-server -n argocd --watch
 ```
 4. Describe Argo CD Server
 ```sh 
@@ -350,12 +356,11 @@ argocd-server   LoadBalancer   10.100.128.127 a654b9e7489e74285a6e36068318dbb5-2
 ```sh
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
-![argocd-dashboard.png](argocd-dashboard.png)
+![images/argocd-dashboard.png](images/argocd-dashboard.png)
 
-## Email update
+## Email Notification Setup
 
 ```commandline
-E-mail Notification
 
 1) gmail setup
  Obtain application specific password
@@ -384,4 +389,25 @@ click on test configuration which will send a test mail to the recipient e-mail 
 Also add to Extended E-mail Notification
 ```
 
+## 📂 Folder Structure
 
+```
+.
+├── Jenkinsfile
+├── pom.xml
+├── src/
+├── argocd-manifest/
+│   └── deployment.yml
+├── images/   <-- stored all screenshots here
+└── README.md
+```
+## 🎯 Outcome
+
+After running this pipeline successfully:
+- ✅ Code is compiled and tested
+- ✅ Static code analysis is done
+- ✅ Docker image is built & pushed
+- ✅ Deployment file is updated automatically
+- ✅ ArgoCD deploys app to Kubernetes cluster
+
+---
