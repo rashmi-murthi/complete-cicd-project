@@ -5,7 +5,7 @@ pipeline {
         DOCKER_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "rashmimurthi/fullstack"
         AWS_REGION = "us-east-1"
-        SONAR_URL = "http://3.231.156.238:9000/" // SonarQube URL 
+        SONAR_URL = "http://3.91.173.219:9000/" // SonarQube URL 
         GIT_REPO_NAME = "complete-cicd-project"
         GIT_USER_NAME ="rashmi-murthi"
         
