@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fullstack
-        image: rashmimurthi/fullstack:7
+        image: rashmimurthi/fullstack:8
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
