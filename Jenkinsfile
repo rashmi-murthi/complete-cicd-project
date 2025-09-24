@@ -60,6 +60,7 @@ pipeline {
                         # Commit and push the updated deployment file
                         git add argocd-manifest/deployment.yml
                         git commit -m "Update deployment image to version ${DOCKER_TAG}"
+                        git pull --rebase https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git main || true
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main 
                     ''' 
                 }
