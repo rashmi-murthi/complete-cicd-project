@@ -12,7 +12,7 @@ helm repo add grafana https://grafana.github.io/helm-charts
 helm repo update
 ```
 
-![Helm repo add and update](images/helm-repo-add.png)
+![Helm repo add and update](images/helm-repo-added.png)
 
 ---
 
