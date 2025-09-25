@@ -26,7 +26,7 @@ Go to Load Balancers
 
 ![Delete LB](Troubleshoot/delete-lb.png)
 
-### Step 3: Delete VPC 
+### Step 3: Delete the VPC 
 ✅ Go to VPC
 
 - Delete teh vpc which is attached to eksctl

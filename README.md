@@ -410,5 +410,6 @@ After running this pipeline successfully:
 - ✅ Docker image is built & pushed
 - ✅ Deployment file is updated automatically
 - ✅ ArgoCD deploys app to Kubernetes cluster
+  
 
 ---

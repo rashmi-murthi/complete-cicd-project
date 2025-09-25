@@ -5,7 +5,7 @@ pipeline {
         DOCKER_TAG = "${BUILD_NUMBER}"
         IMAGE_NAME = "rashmimurthi/fullstack"
         AWS_REGION = "us-east-1"
-        SONAR_URL = "http://3.91.173.219:9000/" // SonarQube URL 
+        SONAR_URL = "http://3.222.189.219:9000/" // SonarQube URL 
         GIT_REPO_NAME = "complete-cicd-project"
         GIT_USER_NAME ="rashmi-murthi"
         
@@ -60,6 +60,7 @@ pipeline {
                         # Commit and push the updated deployment file
                         git add argocd-manifest/deployment.yml
                         git commit -m "Update deployment image to version ${DOCKER_TAG}"
+                        git pull --rebase https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git main || true
                         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main 
                     ''' 
                 }
